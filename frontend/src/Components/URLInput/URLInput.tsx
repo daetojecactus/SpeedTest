@@ -4,7 +4,7 @@ interface UrlInputProps {
   onUrlSubmit: (url: string) => void;
 }
 
-const URLInput: React.FC<UrlInputProps> = ({ onUrlSubmit }) => {
+export default function URLInput({ onUrlSubmit }: UrlInputProps) {
   const [url, setUrl] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -21,10 +21,10 @@ const URLInput: React.FC<UrlInputProps> = ({ onUrlSubmit }) => {
           value={url}
           onChange={(e) => setUrl(e.target.value)}
         />
-              <button className="url-input" type="submit">TEST</button>
+        <button className="url-input" type="submit">
+          TEST
+        </button>
       </form>
     </div>
   );
-};
-
-export default URLInput;
+}
