@@ -1,30 +1,30 @@
-import { Request, Response } from "express";
-import axios from "axios";
-import cheerio from "cheerio";
+// backend/controllers/whatCmsController.ts
 
-const getCMSInfo = async (req: Request, res: Response) => {
+import { Request, Response } from "express";
+import { checkWordPress } from "../CmsCheckers/WordPressChecker";
+import { checkJoomla } from "../CmsCheckers/JoomlaChecker";
+
+// Контроллер для определения CMS по URL
+export async function getCMSInfo(req: Request, res: Response) {
   const { url } = req.body;
 
   try {
-    const response = await axios.get(url);
-    const html = response.data;
-    const $ = cheerio.load(html);
-
-    let cms: string | null = null;
-
-    // Проверяем наличие метатега WordPress
-    if ($('meta[name="generator"][content*="WordPress"]').length) {
-      cms = "WordPress";
+    // Проверяем, является ли сайт WordPress
+    const isWordPress = await checkWordPress(url);
+    if (isWordPress) {
+      return res.status(200).json({ cms: "WordPress" });
     }
-    // Добавляем другие проверки для других CMS здесь
 
-    res.status(200).json({ cms });
+    // Проверяем, является ли сайт Joomla
+    const isJoomla = await checkJoomla(url);
+    if (isJoomla) {
+      return res.status(200).json({ cms: "Joomla" });
+    }
+
+    // Если ни одна CMS не обнаружена, возвращаем сообщение
+    return res.status(200).json({ cms: "CMS не используется или не была определина" });
   } catch (error) {
-    console.error("Произошла ошибка при получении информации о CMS:", error);
-    res.status(500).json({ error: "Произошла ошибка при получении информации о CMS" });
+    console.error("Произошла ошибка при определении CMS:", error);
+    return res.status(500).json({ error: "Произошла ошибка при определении CMS" });
   }
-};
-
-export default {
-  getCMSInfo,
-};
+}

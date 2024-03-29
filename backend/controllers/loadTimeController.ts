@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import axios from "axios";
+import { sendGetRequest } from "../utils/http";
 
 // Функция для обработки запроса на измерение времени загрузки сайта
-const loadTime = async (req: Request, res: Response) => {
+export async function loadTime(req: Request, res: Response) {
   // Извлекаем URL из тела запроса
   const { url } = req.body;
 
@@ -10,7 +10,7 @@ const loadTime = async (req: Request, res: Response) => {
     // Засекаем время начала загрузки
     const startTime = Date.now();
     // Выполняем GET-запрос к указанному URL
-    await axios.get(url);
+    await sendGetRequest(url);
     // Засекаем время окончания загрузки
     const endTime = Date.now();
     // Вычисляем затраченное время
@@ -26,9 +26,4 @@ const loadTime = async (req: Request, res: Response) => {
     console.error("Произошла ошибка при загрузке сайта:", error);
     res.status(500).json({ error: "Произошла ошибка при загрузке сайта" });
   }
-};
-
-// Экспортируем функцию loadTime как метод контроллера
-export default {
-  loadTime,
-};
+}

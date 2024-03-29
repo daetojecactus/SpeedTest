@@ -1,9 +1,9 @@
 import express, { Router } from 'express';
-import loadTimeController from '../controllers/loadTimeController';
+import {loadTime} from '../controllers/loadTimeController';
 
 const router: Router = express.Router();
 
 // Обработка POST-запроса для измерения времени загрузки сайта
-router.post('/', loadTimeController.loadTime);
+router.post('/', loadTime);
 
 export default router;

@@ -1,9 +1,9 @@
 import express, { Router } from 'express';
-import whatCmsController from '../controllers/whatCmsController';
+import {getCMSInfo} from '../controllers/whatCmsController';
 
 const router: Router = express.Router();
 
 // Обработка POST-запроса для cms
-router.post('/', whatCmsController.getCMSInfo);
+router.post('/', getCMSInfo);
 
 export default router;

@@ -3,12 +3,10 @@ import React from "react";
 import URLInput from "../../Components/URLInput/URLInput";
 import CMSInfo from "../../Components/CMSInfo/CMSInfo";
 import LoadingTimeInfo from "../../Components/LoadingTimeInfo/LoadingTimeInfo";
-import useCMSInfo from "../../hooks/useCMSInfo";
-import useLoadingTime from "../../hooks/useLoadingTime";
+import useAllAnalytics from '../../hooks/useAllAnalytics'
 
 export default function MainPage() {
-  const { loadingTime, handleSubmitUrl } = useLoadingTime();
-  const { cms } = useCMSInfo();
+  const { loadingTime, cms, handleSubmitUrl } = useAllAnalytics();
 
   return (
     <div className="main">
