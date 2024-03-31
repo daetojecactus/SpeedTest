@@ -1,5 +1,3 @@
-// backend/controllers/whatCmsController.ts
-
 import { Request, Response } from "express";
 import { checkWordPress } from "../CmsCheckers/WordPressChecker";
 import { checkJoomla } from "../CmsCheckers/JoomlaChecker";
