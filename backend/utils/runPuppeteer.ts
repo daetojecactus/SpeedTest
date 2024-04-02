@@ -1,44 +1,80 @@
 import puppeteer from "puppeteer";
 
-// Функция для запуска Puppeteer и анализа ресурсов на странице
-export async function runPuppeteer(
-  url: string
-): Promise<{ url: string; size: number; loadTime: number }[]> {
-  // Запускаем экземпляр браузера с помощью Puppeteer
+// Функция для анализа ресурсов страницы с помощью Puppeteer
+export async function runPuppeteer(url: string) {
+  // Запуск браузера
   const browser = await puppeteer.launch();
+  // Создание новой страницы
   const page = await browser.newPage();
 
-  // Переходим на указанный URL-адрес
-  await page.goto(url);
+  // Массив для хранения информации об ошибках загрузки ресурсов
+  const errors: any[] = [];
 
-  // Получаем список всех загруженных ресурсов на странице с помощью выполнения JavaScript на странице
-  const resources = await page.evaluate(() => {
-    // Выбираем все элементы страницы, которые могут быть ресурсами
-    const allResources = Array.from(
-      document.querySelectorAll(
-        "img, script, link[href], source, iframe, audio, video"
-      )
-    );
-    // Маппим каждый ресурс в объект с URL, размером и временем загрузки
-    return allResources.map((resource) => {
-      // Получаем URL ресурса
-      const url = resource.getAttribute("src") || resource.getAttribute("href");
-      // Получаем размер ресурса (если он доступен)
-      const size = Number(resource.getAttribute("size")); // Получаем размер ресурса
-      // Получаем время загрузки ресурса (если оно доступно)
-      const loadTime = Number(resource.getAttribute("loadTime")); // Получаем время загрузки ресурса
-      // Возвращаем объект с URL, размером и временем загрузки ресурса
-      return {
-        url: url || "",
-        size: isNaN(size) ? 0 : size,
-        loadTime: isNaN(loadTime) ? 0 : loadTime,
-      };
+  try {
+    // Переход на указанный URL и ожидание полной загрузки DOM-структуры страницы
+    await page.goto(url, { waitUntil: "domcontentloaded" });
+
+    // Обработчик события requestfailed для отслеживания ошибок загрузки ресурсов
+    page.on("requestfailed", (request) => {
+      errors.push({
+        url: request.url(),
+        errorText: request.failure()?.errorText,
+      });
     });
-  });
 
-  // Закрываем экземпляр браузера после завершения работы
-  await browser.close();
+    // Получение списка ресурсов на странице при первой загрузке
+    const resources = await page.evaluate(() => {
+      // Функция для вычисления размера ресурса в байтах
+      function getResourceSize(resource: string) {
+        const blob = new Blob([resource]);
+        return blob.size;
+      }
 
-  // Фильтруем ресурсы, чтобы удалить пустые URL
-  return resources.filter((resource) => !!resource.url);
+      // Определение типа ресурса на основе его URL
+      function getResourceType(url: string): string {
+        if (url.endsWith(".css")) {
+          return "CSS";
+        } else if (url.endsWith(".js")) {
+          return "JavaScript";
+        } else if (
+          url.endsWith(".png") ||
+          url.endsWith(".jpg") ||
+          url.endsWith(".jpeg") ||
+          url.endsWith(".gif") ||
+          url.endsWith(".svg")
+        ) {
+          return "Изображение";
+        } else {
+          return "Другое";
+        }
+      }
+
+      // Получение информации о ресурсах и их времени загрузки
+      const resourcesData = performance
+        .getEntriesByType("resource")
+        .filter(
+          (resource) =>
+            !resource.name.startsWith("data:") &&
+            !resource.name.startsWith("blob:")
+        ) // фильтрация некоторых ресурсов
+        .map((resource) => ({
+          name: resource.name,
+          size: getResourceSize(resource.name),
+          duration: resource.duration,
+          type: getResourceType(resource.name),
+        }));
+
+      return resourcesData;
+    });
+
+    // Возвращение списка ресурсов и информации об ошибках загрузки
+    return { resources, errors };
+  } catch (error) {
+    // Обработка ошибок
+    console.error("Произошла ошибка при анализе ресурсов страницы:", error);
+    throw new Error("Ошибка при анализе ресурсов страницы");
+  } finally {
+    // Закрытие браузера после выполнения анализа
+    await browser.close();
+  }
 }

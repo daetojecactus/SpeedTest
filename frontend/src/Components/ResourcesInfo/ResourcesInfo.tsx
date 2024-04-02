@@ -1,16 +1,21 @@
 import React from "react";
 
-interface Resource {
-  url: string;
+ export interface Resource {
+  name: string;
   size: number;
-  loadTime: number;
+  duration: number;
+  type: string
 }
 
 interface ResourcesInfoProps {
   resources: Resource[];
 }
 
+
 export default function ResourcesInfo({ resources }: ResourcesInfoProps) {
+
+console.log(resources)
+
   return (
     <div>
       {resources.length > 0 && (
@@ -19,9 +24,10 @@ export default function ResourcesInfo({ resources }: ResourcesInfoProps) {
           <ul>
             {resources.map((resource, index) => (
               <li key={index}>
-                <div>URL: {resource.url}</div>
-                <div>Время загрузки: {resource.loadTime} мс</div>
+                <div>URL: {resource.name}</div>
+                <div>Время загрузки: {Math.round(resource.duration)} мс</div>
                 <div>Размер: {resource.size} байт</div>
+                <div>Тип: {resource.type}</div>
               </li>
             ))}
           </ul>

@@ -1,5 +1,3 @@
-// backend/utils/http.ts
-
 import axios from "axios";
 
 // Функция для отправки GET-запроса по URL

@@ -1,5 +1,3 @@
-// backend/checkers/index.ts
-
 import { sendGetRequest } from "../utils/http";
 import cheerio from "cheerio";
 

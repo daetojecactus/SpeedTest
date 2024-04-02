@@ -7,7 +7,7 @@ export async function getResources(req: Request, res: Response) {
 
   try {
     // Получаем список ресурсов на странице с помощью Puppeteer
-    const resources = await runPuppeteer(url);
+    const {resources} = await runPuppeteer(url);
 
     // Выводим логи с информацией о каждом ресурсе
     console.log("Ресурсы на странице:", resources);

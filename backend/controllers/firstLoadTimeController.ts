@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { sendGetRequest } from "../utils/http";
 
-// Функция для обработки запроса на измерение времени загрузки сайта
-export async function loadTime(req: Request, res: Response) {
+// Функция для обработки запроса на измерение первого ответа
+export async function firstLoadTime(req: Request, res: Response) {
   // Извлекаем URL из тела запроса
   const { url } = req.body;
 

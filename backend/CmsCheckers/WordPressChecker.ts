@@ -1,5 +1,3 @@
-// backend/checkers/wordpressChecker.ts
-
 import { loadAndParseHTML } from "./index";
 
 // Проверка наличия метатега WordPress

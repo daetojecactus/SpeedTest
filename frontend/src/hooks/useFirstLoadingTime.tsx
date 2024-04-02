@@ -1,20 +1,19 @@
-// frontend/src/hooks/useLoadTime.ts
 import { useState } from "react";
-import { loadTime } from "../http/loadTimeAPI";
+import { firstLoadTime } from "../http/firstLoadTimeAPI";
 
-export default function useLoadTime() {
-  // Состояние времени загрузки
-  const [loadingTime, setLoadingTime] = useState<number | null>(null);
+export default function useFirstLoadTime() {
+  // Состояние времени
+  const [firstLoadingTime, setFirstLoadingTime] = useState<number | null>(null);
 
-  // Функция для отправки URL на сервер для измерения времени загрузки
-  const loadWebsiteTime = async (url: string) => {
+  // Функция для отправки URL на сервер для измерения времени певрого ответа
+  const loadFirstSiteTime = async (url: string) => {
     try {
       // Выполняем запрос на сервер для измерения времени загрузки по указанному URL
-      const response = await loadTime(url);
+      const response = await firstLoadTime(url);
 
       // Проверяем формат ответа сервера и обновляем состояние времени загрузки
       if (response && typeof response.time === "number") {
-        setLoadingTime(response.time);
+        setFirstLoadingTime(response.time);
       } else {
         console.error("Ошибка: Неверный формат ответа сервера");
       }
@@ -24,5 +23,5 @@ export default function useLoadTime() {
   };
 
   // Возвращаем состояние времени загрузки и функцию для отправки URL на сервер
-  return { loadingTime, loadWebsiteTime };
+  return { firstLoadingTime, loadFirstSiteTime };
 }

@@ -1,5 +1,3 @@
-// backend/checkers/joomlaChecker.ts
-
 import { loadAndParseHTML } from "./index";
 
 // Проверка наличия метатега Joomla
