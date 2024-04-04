@@ -3,6 +3,7 @@ import useFirstLoadTime from "./useFirstLoadingTime";
 import useResources from "./useResources";
 import useFullLoadTime from "./useFullLoadingTime";
 import useResourceErrors from "./useResourceErrors";
+import useDOMStructure from "./useDOMStructure";
 
 // Хук для получения всей аналитики о загрузке страницы
 export default function useAllAnalytics() {
@@ -12,6 +13,7 @@ export default function useAllAnalytics() {
   const { resources, fetchResourcesList } = useResources();
   const { fullLoadingTime, loadFullSiteTime } = useFullLoadTime();
   const { errors, fetchResourceErrors } = useResourceErrors();
+  const { domInfo, fetchDOMInfo } = useDOMStructure();
 
   // Функция для обработки отправки URL на сервер
   const handleSubmitUrl = async (url: string) => {
@@ -30,11 +32,22 @@ export default function useAllAnalytics() {
 
       // Получаем ошибки при загрузке ресурсов
       await fetchResourceErrors(url);
+
+      // Получаем информацию о структуре DOM
+      await fetchDOMInfo(url);
     } catch (error) {
       console.error("Произошла ошибка при анализе сайта:", error);
     }
   };
 
   // Возвращаем состояния и функцию для отправки URL
-  return { firstLoadingTime, cms, resources, fullLoadingTime, errors, handleSubmitUrl };
+  return {
+    firstLoadingTime,
+    cms,
+    resources,
+    fullLoadingTime,
+    errors,
+    domInfo,
+    handleSubmitUrl,
+  };
 }

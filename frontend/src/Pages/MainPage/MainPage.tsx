@@ -6,9 +6,18 @@ import useAllAnalytics from "../../hooks/useAllAnalytics";
 import ResourcesInfo from "../../Components/ResourcesInfo/ResourcesInfo";
 import FullLoadingTimeInfo from "../../Components/FullLoadingTimeInfo/FullLoadingTimeInfo";
 import ResourceErrorsInfo from "../../Components/ResourceErrorsInfo/ResourceErrorsInfo";
+import DOMStructureInfo from "../../Components/DOMStructureInfo/DOMStructureInfo";
 
 export default function MainPage() {
-  const { firstLoadingTime, cms, resources, fullLoadingTime, errors, handleSubmitUrl } = useAllAnalytics();
+  const {
+    firstLoadingTime,
+    cms,
+    resources,
+    fullLoadingTime,
+    errors,
+    domInfo,
+    handleSubmitUrl,
+  } = useAllAnalytics();
 
   return (
     <div className="main">
@@ -17,8 +26,9 @@ export default function MainPage() {
       <FirstLoadingTimeInfo firstLoadingTime={firstLoadingTime} />
       <CMSInfo cms={cms} />
       <ResourcesInfo resources={resources} />
-      <FullLoadingTimeInfo fullLoadingTime={fullLoadingTime}/>
-      <ResourceErrorsInfo errors={errors}/>
+      <FullLoadingTimeInfo fullLoadingTime={fullLoadingTime} />
+      <ResourceErrorsInfo errors={errors} />
+      <DOMStructureInfo domInfo={domInfo} />
     </div>
   );
 }
