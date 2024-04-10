@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { runPuppeteer } from "../utils/runPuppeteer";
 
 // Контроллер для анализа структуры DOM
-export async function domStructure(req: Request, res: Response) {
+export async function domStructureInfo(req: Request, res: Response) {
   // Извлекаем URL из тела запроса
   const { url } = req.body;
 

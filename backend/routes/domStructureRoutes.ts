@@ -1,9 +1,9 @@
 import express, { Router } from 'express';
-import {domStructure} from '../controllers/domStructureController';
+import {domStructureInfo} from '../controllers/domStructureController';
 
 const router: Router = express.Router();
 
 // Обработка POST-запроса для измерения DOM
-router.post('/', domStructure);
+router.post('/', domStructureInfo);
 
 export default router;

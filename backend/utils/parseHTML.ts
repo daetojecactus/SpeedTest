@@ -1,4 +1,4 @@
-import { sendGetRequest } from "../utils/http";
+import { sendGetRequest } from "./http";
 import cheerio from "cheerio";
 
 // Функция для загрузки и обработки HTML разметки по URL

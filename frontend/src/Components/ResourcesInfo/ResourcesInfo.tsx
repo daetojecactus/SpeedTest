@@ -14,7 +14,6 @@ interface ResourcesInfoProps {
 
 export default function ResourcesInfo({ resources }: ResourcesInfoProps) {
 
-console.log(resources)
 
   return (
     <div>

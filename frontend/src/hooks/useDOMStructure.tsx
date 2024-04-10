@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { domStructure } from "../http/domStructureAPI";
-import { DOMInfo } from "../Components/DOMStructureInfo/DOMStructureInfo";
+import { domStructureInfo } from "../http/domStructureAPI";
+import { DOMStructure } from "../Components/DOMStructureInfo/DOMStructureInfo";
 
 // Хук для получения информации о DOM
 export default function useDOMStructure() {
   // Состояние для хранения информации
-  const [domInfo, setDOMInfo] = useState<DOMInfo | null>(null);
+  const [domStructure, setDomStructure] = useState<DOMStructure | null>(null);
 
-  const fetchDOMInfo = async (url: string) => {
+  const fetchDOMStructure = async (url: string) => {
     try {
       // Отправляем запрос на сервер для информации о DOM
-      const data = await domStructure(url);
+      const data = await domStructureInfo(url);
       if (data) {
-        setDOMInfo(data.domInfo);
+        setDomStructure(data.domStructure);
       } else {
         console.log("Ошибка: информация о структуре DOM не получена");
       }
@@ -24,5 +24,5 @@ export default function useDOMStructure() {
     }
   };
 
-  return { domInfo, fetchDOMInfo };
+  return { domStructure, fetchDOMStructure };
 }

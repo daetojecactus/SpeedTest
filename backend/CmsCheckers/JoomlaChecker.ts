@@ -1,4 +1,4 @@
-import { loadAndParseHTML } from "./index";
+import { loadAndParseHTML } from "../utils/parseHTML";
 
 // Проверка наличия метатега Joomla
 export async function checkJoomla(url: string): Promise<boolean> {

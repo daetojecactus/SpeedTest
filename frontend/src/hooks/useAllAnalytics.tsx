@@ -13,7 +13,7 @@ export default function useAllAnalytics() {
   const { resources, fetchResourcesList } = useResources();
   const { fullLoadingTime, loadFullSiteTime } = useFullLoadTime();
   const { errors, fetchResourceErrors } = useResourceErrors();
-  const { domInfo, fetchDOMInfo } = useDOMStructure();
+  const { domStructure, fetchDOMStructure } = useDOMStructure();
 
   // Функция для обработки отправки URL на сервер
   const handleSubmitUrl = async (url: string) => {
@@ -34,7 +34,7 @@ export default function useAllAnalytics() {
       await fetchResourceErrors(url);
 
       // Получаем информацию о структуре DOM
-      await fetchDOMInfo(url);
+      await fetchDOMStructure(url);
     } catch (error) {
       console.error("Произошла ошибка при анализе сайта:", error);
     }
@@ -47,7 +47,7 @@ export default function useAllAnalytics() {
     resources,
     fullLoadingTime,
     errors,
-    domInfo,
+    domStructure,
     handleSubmitUrl,
   };
 }

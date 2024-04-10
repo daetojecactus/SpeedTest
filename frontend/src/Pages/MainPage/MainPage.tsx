@@ -15,7 +15,7 @@ export default function MainPage() {
     resources,
     fullLoadingTime,
     errors,
-    domInfo,
+    domStructure,
     handleSubmitUrl,
   } = useAllAnalytics();
 
@@ -28,7 +28,7 @@ export default function MainPage() {
       <ResourcesInfo resources={resources} />
       <FullLoadingTimeInfo fullLoadingTime={fullLoadingTime} />
       <ResourceErrorsInfo errors={errors} />
-      <DOMStructureInfo domInfo={domInfo} />
+      <DOMStructureInfo domStructure={domStructure} />
     </div>
   );
 }

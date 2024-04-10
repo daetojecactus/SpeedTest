@@ -1,27 +1,27 @@
 import React from "react";
 
-export interface DOMInfo {
+export interface DOMStructure {
   totalElements: number;
   maxDepth: number;
-  maxChildren: number;
+  maxChildCount: number;
 }
 
-interface DOMInfoProps {
-  domInfo: DOMInfo | null;
+interface DOMStructureProps {
+  domStructure: DOMStructure | null;
 }
 
-export default function DOMStructureInfo({ domInfo }: DOMInfoProps) {
+export default function DOMStructureInfo({ domStructure }: DOMStructureProps) {
   // Проверяем, доступна ли информация о структуре DOM
-  if (!domInfo) {
+  if (!domStructure) {
     return null; // Если информация недоступна, ничего не отображаем
   }
 
   return (
     <div>
       <h3>Информация о структуре DOM:</h3>
-      <div>Общее количество элементов: {domInfo.totalElements}</div>
-      <div>Максимальная глубина вложенности: {domInfo.maxDepth}</div>
-      <div>Максимальное число дочерних элементов: {domInfo.maxChildren}</div>
+      <div>Общее количество элементов: {domStructure.totalElements}</div>
+      <div>Максимальная глубина вложенности: {domStructure.maxDepth}</div>
+      <div>Максимальное число дочерних элементов: {domStructure.maxChildCount}</div>
     </div>
   );
 }
