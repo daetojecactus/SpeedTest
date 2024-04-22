@@ -20,15 +20,17 @@ export default function MainPage() {
   } = useAllAnalytics();
 
   return (
-    <div className="main">
-      <h1 className="main__title">SPEEDTEST</h1>
-      <URLInput onUrlSubmit={handleSubmitUrl} />
-      <FirstLoadingTimeInfo firstLoadingTime={firstLoadingTime} />
-      <CMSInfo cms={cms} />
-      <ResourcesInfo resources={resources} />
-      <FullLoadingTimeInfo fullLoadingTime={fullLoadingTime} />
-      <ResourceErrorsInfo errors={errors} />
-      <DOMStructureInfo domStructure={domStructure} />
-    </div>
+    // <main className="main">
+      <div className="container main__container">
+        <h1 className="main__title">PAGESPEED</h1>
+        <URLInput onUrlSubmit={handleSubmitUrl} />
+        <FirstLoadingTimeInfo firstLoadingTime={firstLoadingTime} />
+        <CMSInfo cms={cms} />
+        <ResourcesInfo resources={resources} />
+        <FullLoadingTimeInfo fullLoadingTime={fullLoadingTime} />
+        <ResourceErrorsInfo errors={errors} />
+        <DOMStructureInfo domStructure={domStructure} />
+      </div>
+    // </main>
   );
 }

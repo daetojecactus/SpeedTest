@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Input, Space } from "antd";
-import "./URLInput.scss";
 
 interface UrlInputProps {
   onUrlSubmit: (url: string) => void;
@@ -16,14 +15,15 @@ export default function URLInput({ onUrlSubmit }: UrlInputProps) {
 
   return (
     <div className="url-input">
-      <form action="" className="url-input" onSubmit={handleSubmit}>
-        <Space.Compact style={{ width: "100%" }}>
+      <form action="" className="url-input__form" onSubmit={handleSubmit}>
+        <Space.Compact className="url-input__box">
           <Input
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             placeholder="https://pagespeed.kz/"
+            className="url-input__input"
           />
-          <Button className="url-btn" type="primary" htmlType="submit">
+          <Button className="url-input__btn" type="primary" htmlType="submit">
             TEST
           </Button>
         </Space.Compact>
