@@ -1,5 +1,5 @@
-import React from "react";
-import { Collapse } from "antd";
+import React from 'react';
+import { Collapse } from 'antd';
 
 export interface Error {
   errorText: string;
@@ -19,21 +19,21 @@ export default function ResourceErrorsInfo({
     <div>
       {errors.length > 0 && (
         <>
-                <h3>Информация о ошибках:</h3>
-        <Collapse accordion>
-          {errors.map((error, index) => (
-            <Panel header={`Ошибка ${index + 1}`} key={index}>
-              <div>
-                <h4>Текст ошибки:</h4>
-                <div>{error.errorText}</div>
-              </div>
-              <div>
-                <h4>URL:</h4>
-                <div>{error.url}</div>
-              </div>
-            </Panel>
-          ))}
-        </Collapse>
+          <h3>Информация о ошибках:</h3>
+          <Collapse accordion>
+            {errors.map((error, index) => (
+              <Panel header={`Ошибка ${index + 1}`} key={index}>
+                <div>
+                  <h4>Текст ошибки:</h4>
+                  <div>{error.errorText}</div>
+                </div>
+                <div>
+                  <h4>URL:</h4>
+                  <div>{error.url}</div>
+                </div>
+              </Panel>
+            ))}
+          </Collapse>
         </>
       )}
     </div>

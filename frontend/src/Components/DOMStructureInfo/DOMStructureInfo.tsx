@@ -1,6 +1,6 @@
-import React from "react";
-import { Descriptions } from "antd";
-import type { DescriptionsProps } from "antd";
+import React from 'react';
+import { Descriptions } from 'antd';
+import type { DescriptionsProps } from 'antd';
 
 export interface DOMStructure {
   totalElements: number;
@@ -18,17 +18,17 @@ export default function DOMStructureInfo({ domStructure }: DOMStructureProps) {
     return null; // Если информации нет, ничего не отображаем
   }
 
-  const items: DescriptionsProps["items"] = [
+  const items: DescriptionsProps['items'] = [
     {
-      label: "Общее количество элементов",
+      label: 'Общее количество элементов',
       children: domStructure.totalElements.toString(),
     },
     {
-      label: "Максимальная глубина вложенности",
+      label: 'Максимальная глубина вложенности',
       children: domStructure.maxDepth.toString(),
     },
     {
-      label: "Максимальное число дочерних элементов",
+      label: 'Максимальное число дочерних элементов',
       children: domStructure.maxChildCount.toString(),
     },
   ];

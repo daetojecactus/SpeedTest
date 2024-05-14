@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { fetchCMSInfo } from "../http/whatCmsAPI";
+import { useState } from 'react';
+import { fetchCMSInfo } from '../http/whatCmsAPI';
 
 // Хук для получения информации о CMS по URL
 export default function useCMSInfo() {
@@ -16,10 +16,10 @@ export default function useCMSInfo() {
       if (response && response.cms) {
         setCMS(response.cms);
       } else {
-        console.log("Сайт не использует известные CMS");
+        console.log('Сайт не использует известные CMS');
       }
     } catch (error) {
-      console.error("Произошла ошибка при получении информации о CMS:", error);
+      console.error('Произошла ошибка при получении информации о CMS:', error);
     }
   };
 

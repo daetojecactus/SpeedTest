@@ -1,9 +1,9 @@
-import useCMSInfo from "./useCMSInfo";
-import useFirstLoadTime from "./useFirstLoadingTime";
-import useResources from "./useResources";
-import useFullLoadTime from "./useFullLoadingTime";
-import useResourceErrors from "./useResourceErrors";
-import useDOMStructure from "./useDOMStructure";
+import useCMSInfo from './useCMSInfo';
+import useFirstLoadTime from './useFirstLoadingTime';
+import useResources from './useResources';
+import useFullLoadTime from './useFullLoadingTime';
+import useResourceErrors from './useResourceErrors';
+import useDOMStructure from './useDOMStructure';
 
 // Хук для получения всей аналитики о загрузке страницы
 export default function useAllAnalytics() {
@@ -36,7 +36,7 @@ export default function useAllAnalytics() {
       // Получаем информацию о структуре DOM
       await fetchDOMStructure(url);
     } catch (error) {
-      console.error("Произошла ошибка при анализе сайта:", error);
+      console.error('Произошла ошибка при анализе сайта:', error);
     }
   };
 

@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import {fullLoadTime} from '../controllers/fullLoadTimeController';
+import { fullLoadTime } from '../controllers/fullLoadTimeController';
 
 const router: Router = express.Router();
 

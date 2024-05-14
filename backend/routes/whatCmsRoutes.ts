@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import {getCMSInfo} from '../controllers/whatCmsController';
+import { getCMSInfo } from '../controllers/whatCmsController';
 
 const router: Router = express.Router();
 

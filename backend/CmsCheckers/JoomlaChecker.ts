@@ -1,5 +1,5 @@
-import { loadAndParseHTML } from "../utils/parseHTML";
-import { runPuppeteer } from "../utils/runPuppeteer";
+import { loadAndParseHTML } from '../utils/parseHTML';
+import { runPuppeteer } from '../utils/runPuppeteer';
 
 // Проверка наличия метатега Joomla
 export async function checkJoomla(url: string): Promise<boolean> {
@@ -18,37 +18,37 @@ export async function checkJoomla(url: string): Promise<boolean> {
 
     // ключевые слова или шаблоны для Joomla в js
     const joomlaKeywords = [
-      "JFactory",
-      "JRoute",
-      "JHtml",
-      "Joomla",
-      "JUri",
-      "JLoader",
-      "JDispatcher",
-      "JInput",
-      "JAccess",
-      "JUser",
-      "JLanguage",
-      "JModel",
-      "JController",
-      "JView",
-      "JDocument",
-      "JSite",
-      "JTable",
-      "JDatabase",
-      "JForm",
-      "JInstaller",
-      "JUpdater",
-      "JUpdater",
-      "JInstaller",
-      "JModuleHelper",
-      "JEventDispatcher",
-      "JContentHelper",
+      'JFactory',
+      'JRoute',
+      'JHtml',
+      'Joomla',
+      'JUri',
+      'JLoader',
+      'JDispatcher',
+      'JInput',
+      'JAccess',
+      'JUser',
+      'JLanguage',
+      'JModel',
+      'JController',
+      'JView',
+      'JDocument',
+      'JSite',
+      'JTable',
+      'JDatabase',
+      'JForm',
+      'JInstaller',
+      'JUpdater',
+      'JUpdater',
+      'JInstaller',
+      'JModuleHelper',
+      'JEventDispatcher',
+      'JContentHelper',
     ];
 
     // Проверяем JavaScript код на наличие ключевых слов Joomla
     const isJoomlaUsed = joomlaKeywords.some((keyword) =>
-      jsCodeWithComments.includes(keyword)
+      jsCodeWithComments.includes(keyword),
     );
     if (isJoomlaUsed) {
       return true;
@@ -56,14 +56,14 @@ export async function checkJoomla(url: string): Promise<boolean> {
 
     // Если метатег не найден, проверяем ресурсы на наличие путей joomla
     for (const resource of resources) {
-      if (resource.name.includes("joomla")) {
+      if (resource.name.includes('joomla')) {
         return true;
       }
     }
 
     return false; // Если ни метатег, ни ключевые слова, ни пути Joomla не найдены
   } catch (error) {
-    console.error("Произошла ошибка при проверке наличия Joomla:", error);
+    console.error('Произошла ошибка при проверке наличия Joomla:', error);
     return false;
   }
 }

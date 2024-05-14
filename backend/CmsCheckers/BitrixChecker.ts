@@ -1,5 +1,5 @@
-import { loadAndParseHTML } from "../utils/parseHTML";
-import { runPuppeteer } from "../utils/runPuppeteer";
+import { loadAndParseHTML } from '../utils/parseHTML';
+import { runPuppeteer } from '../utils/runPuppeteer';
 
 // Проверка наличия метатега или ключевых слов Bitrix
 export async function checkBitrix(url: string): Promise<boolean> {
@@ -18,47 +18,47 @@ export async function checkBitrix(url: string): Promise<boolean> {
 
     // ключевые слова или шаблоны для Bitrix в js
     const bitrixKeywords = [
-      "BX",
-      "Bitrix",
-      "CBitrix",
-      "CMain",
-      "CComponentEngine",
-      "CIBlock",
-      "CUser",
-      "CModule",
-      "CAgent",
-      "CFile",
-      "CEvent",
-      "CUtil",
-      "CMenu",
-      "CDatabase",
-      "CIBlockElement",
-      "CIBlockSection",
-      "CIBlockProperty",
-      "CIBlockType",
-      "CIBlockResult",
-      "CAdminList",
-      "CAdminTabControl",
-      "CAdminContextMenu",
-      "CAdminCalendar",
-      "CAdminDialog",
-      "CAdminFilter",
-      "CAdminMessage",
-      "CAdminNotify",
-      "CAdminPage",
-      "CAdminTabControl",
-      "CAdminViewList",
-      "CAdminForm",
-      "CAdminList",
-      "CAdminSorting",
-      "CAdminSubContextMenu",
-      "CAdminSubList",
-      "CAdminSubMenu",
+      'BX',
+      'Bitrix',
+      'CBitrix',
+      'CMain',
+      'CComponentEngine',
+      'CIBlock',
+      'CUser',
+      'CModule',
+      'CAgent',
+      'CFile',
+      'CEvent',
+      'CUtil',
+      'CMenu',
+      'CDatabase',
+      'CIBlockElement',
+      'CIBlockSection',
+      'CIBlockProperty',
+      'CIBlockType',
+      'CIBlockResult',
+      'CAdminList',
+      'CAdminTabControl',
+      'CAdminContextMenu',
+      'CAdminCalendar',
+      'CAdminDialog',
+      'CAdminFilter',
+      'CAdminMessage',
+      'CAdminNotify',
+      'CAdminPage',
+      'CAdminTabControl',
+      'CAdminViewList',
+      'CAdminForm',
+      'CAdminList',
+      'CAdminSorting',
+      'CAdminSubContextMenu',
+      'CAdminSubList',
+      'CAdminSubMenu',
     ];
 
     // Проверяем JavaScript код на наличие ключевых слов Bitrix
     const isBitrixUsed = bitrixKeywords.some((keyword) =>
-      jsCodeWithComments.includes(keyword)
+      jsCodeWithComments.includes(keyword),
     );
 
     if (isBitrixUsed) {
@@ -67,14 +67,14 @@ export async function checkBitrix(url: string): Promise<boolean> {
 
     //проверяем ресурсы на наличие путей Bitrix
     for (const resource of resources) {
-      if (resource.name.includes("bitrix" && "templates")) {
+      if (resource.name.includes('bitrix' && 'templates')) {
         return true;
       }
     }
 
     return false; // Если ни метатег, ни ключевые слова, ни пути Bitrix не найдены
   } catch (error) {
-    console.error("Произошла ошибка при проверке наличия Bitrix:", error);
+    console.error('Произошла ошибка при проверке наличия Bitrix:', error);
     return false;
   }
 }

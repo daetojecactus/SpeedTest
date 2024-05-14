@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { resourceErrors } from "../http/resourceErrorsAPI";
-import { Error } from "../Components/ResourceErrorsInfo/ResourceErrorsInfo";
+import { useState } from 'react';
+import { resourceErrors } from '../http/resourceErrorsAPI';
+import { Error } from '../Components/ResourceErrorsInfo/ResourceErrorsInfo';
 
 // Хук для получения списка ошибок при загрузке ресурсов
 export default function useResourceErrors() {
@@ -18,11 +18,11 @@ export default function useResourceErrors() {
         setErrors(data.errors);
       } else {
         // Если список ошибок не получен, выводим сообщение об ошибке в консоль
-        console.log("Ошибка: список ошибок не получен");
+        console.log('Ошибка: список ошибок не получен');
       }
     } catch (error) {
       // В случае ошибки при получении списка ошибок выводим сообщение в консоль
-      console.error("Произошла ошибка при получении списка ошибок:", error);
+      console.error('Произошла ошибка при получении списка ошибок:', error);
     }
   };
 

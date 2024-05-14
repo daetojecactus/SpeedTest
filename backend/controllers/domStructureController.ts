@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { runPuppeteer } from "../utils/runPuppeteer";
+import { Request, Response } from 'express';
+import { runPuppeteer } from '../utils/runPuppeteer';
 
 // Контроллер для анализа структуры DOM
 export async function domStructureInfo(req: Request, res: Response) {
@@ -14,7 +14,9 @@ export async function domStructureInfo(req: Request, res: Response) {
     res.status(200).json({ domStructure });
   } catch (error) {
     // В случае ошибки выводим сообщение в консоль и отправляем статус 500
-    console.error("Произошла ошибка при анализе структуры DOM:", error);
-    res.status(500).json({ error: "Произошла ошибка при анализе структуры DOM" });
+    console.error('Произошла ошибка при анализе структуры DOM:', error);
+    res
+      .status(500)
+      .json({ error: 'Произошла ошибка при анализе структуры DOM' });
   }
 }

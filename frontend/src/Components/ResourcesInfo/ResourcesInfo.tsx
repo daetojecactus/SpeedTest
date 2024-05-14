@@ -1,6 +1,6 @@
-import React from "react";
-import { Table, Tag } from "antd";
-import type { TableProps } from "antd";
+import React from 'react';
+import { Table, Tag } from 'antd';
+import type { TableProps } from 'antd';
 
 export interface Resource {
   name: string;
@@ -16,52 +16,52 @@ interface ResourcesInfoProps {
 
 export default function ResourcesInfo({ resources }: ResourcesInfoProps) {
   // Колонки таблицы с определением свойств каждой колонки
-  const columns: TableProps<Resource>["columns"] = [
+  const columns: TableProps<Resource>['columns'] = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
       render: (name: string) => (
-        <div style={{ overflowX: "auto", maxWidth: "500px" }}>{name}</div>
+        <div style={{ overflowX: 'auto', maxWidth: '500px' }}>{name}</div>
       ),
     },
     {
-      title: "Size (bytes)",
-      dataIndex: "size",
-      key: "size",
+      title: 'Size (bytes)',
+      dataIndex: 'size',
+      key: 'size',
       render: (size: number) => `${size}`,
       sorter: (a, b) => a.size - b.size,
     },
     {
-      title: "Duration (ms)",
-      dataIndex: "duration",
-      key: "duration",
+      title: 'Duration (ms)',
+      dataIndex: 'duration',
+      key: 'duration',
       render: (duration: number) => `${Math.round(duration)}`, // Округляем
       sorter: (a, b) => a.duration - b.duration,
     },
     {
-      title: "Type",
-      dataIndex: "type",
-      key: "type",
+      title: 'Type',
+      dataIndex: 'type',
+      key: 'type',
       render: (type: string) => (
         <Tag color={getColorByType(type)}>{type.toUpperCase()}</Tag>
       ),
       filters: [
         {
-          text: "CSS",
-          value: "CSS",
+          text: 'CSS',
+          value: 'CSS',
         },
         {
-          text: "JavaScript",
-          value: "JavaScript",
+          text: 'JavaScript',
+          value: 'JavaScript',
         },
         {
-          text: "Изображение",
-          value: "Изображение",
+          text: 'Изображение',
+          value: 'Изображение',
         },
         {
-          text: "Другое",
-          value: "Другое",
+          text: 'Другое',
+          value: 'Другое',
         },
       ],
       onFilter: (value, record) => record.type.indexOf(value as string) === 0,
@@ -86,29 +86,29 @@ export default function ResourcesInfo({ resources }: ResourcesInfoProps) {
   // Функция для определения цвета Tag в зависимости от типа ресурса
   const getColorByType = (type: string): string => {
     switch (type) {
-      case "CSS":
-        return "blue";
-      case "JavaScript":
-        return "yellow";
-      case "Изображение":
-        return "green";
-      case "Шрифт":
-        return "purple";
-      case "Google Analytics":
-        return "brown";
-      case "Yandex Metrika":
-        return "orange";
+      case 'CSS':
+        return 'blue';
+      case 'JavaScript':
+        return 'yellow';
+      case 'Изображение':
+        return 'green';
+      case 'Шрифт':
+        return 'purple';
+      case 'Google Analytics':
+        return 'brown';
+      case 'Yandex Metrika':
+        return 'orange';
       default:
-        return "red";
+        return 'red';
     }
   };
 
-  const onChange: TableProps<Resource>["onChange"] = (
+  const onChange: TableProps<Resource>['onChange'] = (
     filters,
     sorter,
-    extra
+    extra,
   ) => {
-    console.log("params", filters, sorter, extra);
+    console.log('params', filters, sorter, extra);
   };
 
   return (
@@ -124,7 +124,7 @@ export default function ResourcesInfo({ resources }: ResourcesInfoProps) {
             }))}
             pagination={false}
             onChange={onChange}
-            showSorterTooltip={{ target: "sorter-icon" }}
+            showSorterTooltip={{ target: 'sorter-icon' }}
             scroll={{ x: true }}
           />
         </>

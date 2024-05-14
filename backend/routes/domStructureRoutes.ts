@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import {domStructureInfo} from '../controllers/domStructureController';
+import { domStructureInfo } from '../controllers/domStructureController';
 
 const router: Router = express.Router();
 

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { fullLoadTime } from "../http/fullLoadTimeAPI";
+import { useState } from 'react';
+import { fullLoadTime } from '../http/fullLoadTimeAPI';
 
 export default function useFullLoadTime() {
   // Состояние времени загрузки
@@ -12,13 +12,13 @@ export default function useFullLoadTime() {
       const response = await fullLoadTime(url);
 
       // Проверяем формат ответа сервера и обновляем состояние времени загрузки
-      if (response && typeof response.time === "number") {
+      if (response && typeof response.time === 'number') {
         setFullLoadingTime(response.time);
       } else {
-        console.error("Ошибка: Неверный формат ответа сервера");
+        console.error('Ошибка: Неверный формат ответа сервера');
       }
     } catch (error) {
-      console.error("Произошла ошибка при измерении времени загрузки:", error);
+      console.error('Произошла ошибка при измерении времени загрузки:', error);
     }
   };
 

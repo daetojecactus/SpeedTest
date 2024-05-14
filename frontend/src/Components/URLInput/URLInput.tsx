@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Button, Input, Space } from "antd";
+import React, { useState } from 'react';
+import { Button, Input, Space } from 'antd';
 
 interface UrlInputProps {
   onUrlSubmit: (url: string) => void;
 }
 
 export default function URLInput({ onUrlSubmit }: UrlInputProps) {
-  const [url, setUrl] = useState<string>("");
+  const [url, setUrl] = useState<string>('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

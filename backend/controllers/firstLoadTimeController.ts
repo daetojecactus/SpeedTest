@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { sendGetRequest } from "../utils/http";
+import { Request, Response } from 'express';
+import { sendGetRequest } from '../utils/http';
 
 // Функция для обработки запроса на измерение первого ответа
 export async function firstLoadTime(req: Request, res: Response) {
@@ -23,7 +23,7 @@ export async function firstLoadTime(req: Request, res: Response) {
     res.status(200).json({ time: elapsedTime });
   } catch (error) {
     // В случае ошибки выводим сообщение в консоль и отправляем статус 500
-    console.error("Произошла ошибка при загрузке сайта:", error);
-    res.status(500).json({ error: "Произошла ошибка при загрузке сайта" });
+    console.error('Произошла ошибка при загрузке сайта:', error);
+    res.status(500).json({ error: 'Произошла ошибка при загрузке сайта' });
   }
 }

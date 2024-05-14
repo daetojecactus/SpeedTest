@@ -1,4 +1,4 @@
-import puppeteer from "puppeteer";
+import puppeteer from 'puppeteer';
 
 // Функция для анализа ресурсов страницы с помощью Puppeteer
 export async function runPuppeteer(url: string) {
@@ -12,10 +12,10 @@ export async function runPuppeteer(url: string) {
 
   try {
     // Переход на указанный URL и ожидание полной загрузки DOM-структуры страницы
-    await page.goto(url, { waitUntil: "domcontentloaded" });
+    await page.goto(url, { waitUntil: 'domcontentloaded' });
 
     // Обработчик события requestfailed для отслеживания ошибок загрузки ресурсов
-    page.on("requestfailed", (request) => {
+    page.on('requestfailed', (request) => {
       errors.push({
         url: request.url(),
         errorText: request.failure()?.errorText,
@@ -32,24 +32,24 @@ export async function runPuppeteer(url: string) {
 
       // Определение типа ресурса на основе его URL
       function getResourceType(url: string): string | null {
-        if (url.includes(".css")) {
-          return "CSS";
-        } else if (url.includes(".js")) {
-          return "JavaScript";
+        if (url.includes('.css')) {
+          return 'CSS';
+        } else if (url.includes('.js')) {
+          return 'JavaScript';
         } else if (url.match(/\.(png|jpg|jpeg|gif|svg)$/i)) {
-          return "Изображение";
+          return 'Изображение';
         } else {
-          return "Другое";
+          return 'Другое';
         }
       }
 
       // Получение информации о ресурсах и их времени загрузки
       const resourcesData = performance
-        .getEntriesByType("resource")
+        .getEntriesByType('resource')
         .filter(
           (resource) =>
-            !resource.name.startsWith("data:") &&
-            !resource.name.startsWith("blob:")
+            !resource.name.startsWith('data:') &&
+            !resource.name.startsWith('blob:'),
         ) // фильтрация некоторых ресурсов
         .map((resource) => ({
           name: resource.name,
@@ -64,7 +64,7 @@ export async function runPuppeteer(url: string) {
     // Получение структуры DOM
     const domStructure = await page.evaluate(() => {
       // Получение общего количества элементов DOM
-      const totalElements = document.querySelectorAll("*").length;
+      const totalElements = document.querySelectorAll('*').length;
 
       // Поиск максимальной глубины вложенности DOM
       function findMaxDepth(node: HTMLElement | null): number {
@@ -75,8 +75,8 @@ export async function runPuppeteer(url: string) {
             1 +
             Math.max(
               ...Array.from(node.children).map((child) =>
-                findMaxDepth(child as HTMLElement)
-              )
+                findMaxDepth(child as HTMLElement),
+              ),
             )
           );
         }
@@ -87,8 +87,8 @@ export async function runPuppeteer(url: string) {
       // Поиск максимального числа дочерних элементов
       const maxChildCount = Math.max(
         ...Array.from(document.body.children).map(
-          (child) => child.children.length
-        )
+          (child) => child.children.length,
+        ),
       );
 
       return {
@@ -99,7 +99,7 @@ export async function runPuppeteer(url: string) {
     });
 
     // Фильтрация ресурсов для получения только JavaScript файлов
-    const jsResources = resources.filter((res) => res.type === "JavaScript");
+    const jsResources = resources.filter((res) => res.type === 'JavaScript');
 
     // Получение содержимого JavaScript файлов
     const jsCodeWithComments = await Promise.all(
@@ -111,15 +111,15 @@ export async function runPuppeteer(url: string) {
 
         // Обрамление содержимого JavaScript файла комментариями
         return `<!--\n${jsContent}\n//-->`;
-      })
-    ).then((jsCodes) => jsCodes.join("\n"));
+      }),
+    ).then((jsCodes) => jsCodes.join('\n'));
 
     // Возвращение списка ресурсов, информации об ошибках загрузки и структуры DOM
     return { resources, errors, domStructure, jsCodeWithComments };
   } catch (error) {
     // Обработка ошибок
-    console.error("Произошла ошибка при анализе ресурсов страницы:", error);
-    throw new Error("Ошибка при анализе ресурсов страницы");
+    console.error('Произошла ошибка при анализе ресурсов страницы:', error);
+    throw new Error('Ошибка при анализе ресурсов страницы');
   } finally {
     // Закрытие браузера после выполнения анализа
     await browser.close();

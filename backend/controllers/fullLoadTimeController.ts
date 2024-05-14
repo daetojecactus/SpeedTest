@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { runPuppeteer } from "../utils/runPuppeteer";
+import { Request, Response } from 'express';
+import { runPuppeteer } from '../utils/runPuppeteer';
 
 // Контроллер для измерения полного времени загрузки сайта
 export async function fullLoadTime(req: Request, res: Response) {
@@ -17,7 +17,7 @@ export async function fullLoadTime(req: Request, res: Response) {
     const endTime = Date.now();
 
     // Вычисляем затраченное время
-    const elapsedTime = endTime - startTime ;
+    const elapsedTime = endTime - startTime;
 
     // Выводим в консоль время загрузки
     console.log(`Полное время загрузки сайта ${url}: ${elapsedTime} мс`);
@@ -26,7 +26,7 @@ export async function fullLoadTime(req: Request, res: Response) {
     res.status(200).json({ time: elapsedTime });
   } catch (error) {
     // В случае ошибки выводим сообщение в консоль и отправляем статус 500
-    console.error("Произошла ошибка при загрузке сайта:", error);
-    res.status(500).json({ error: "Произошла ошибка при загрузке сайта" });
+    console.error('Произошла ошибка при загрузке сайта:', error);
+    res.status(500).json({ error: 'Произошла ошибка при загрузке сайта' });
   }
 }

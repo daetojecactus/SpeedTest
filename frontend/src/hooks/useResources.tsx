@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { fetchResources } from "../http/resourcesAPI";
-import { Resource } from "../Components/ResourcesInfo/ResourcesInfo";
+import { useState } from 'react';
+import { fetchResources } from '../http/resourcesAPI';
+import { Resource } from '../Components/ResourcesInfo/ResourcesInfo';
 
 export default function useResources() {
   const [resources, setResources] = useState<Resource[]>([]);
@@ -12,10 +12,10 @@ export default function useResources() {
       if (data && data.resources) {
         setResources(data.resources);
       } else {
-        console.log("Список ресурсов не получен");
+        console.log('Список ресурсов не получен');
       }
     } catch (error) {
-      console.error("Произошла ошибка при получении списка ресурсов:", error);
+      console.error('Произошла ошибка при получении списка ресурсов:', error);
     }
   };
 

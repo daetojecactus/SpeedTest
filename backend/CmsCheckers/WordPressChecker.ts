@@ -1,5 +1,5 @@
-import { loadAndParseHTML } from "../utils/parseHTML";
-import { runPuppeteer } from "../utils/runPuppeteer";
+import { loadAndParseHTML } from '../utils/parseHTML';
+import { runPuppeteer } from '../utils/runPuppeteer';
 
 // Функция для определения CMS WordPress
 export async function checkWordPress(url: string): Promise<boolean> {
@@ -19,30 +19,30 @@ export async function checkWordPress(url: string): Promise<boolean> {
 
     // ключевые слова или шаблоны для WordPress в js
     const wordPressKeywords = [
-      "wp-content",
-      "wp-includes",
-      "wp-admin",
-      "wp_enqueue_script",
-      "wp_enqueue_style",
-      "wp_head",
-      "wp_footer",
-      "wp_nav_menu",
-      "wp_query",
+      'wp-content',
+      'wp-includes',
+      'wp-admin',
+      'wp_enqueue_script',
+      'wp_enqueue_style',
+      'wp_head',
+      'wp_footer',
+      'wp_nav_menu',
+      'wp_query',
     ];
 
     // Проверяем JavaScript код на наличие ключевых слов WordPress
     const isWordPressUsed = wordPressKeywords.some((keyword) =>
-      jsCodeWithComments.includes(keyword)
+      jsCodeWithComments.includes(keyword),
     );
     if (isWordPressUsed) {
       return true;
     }
 
-//проверка по списку ресурсов
+    //проверка по списку ресурсов
     for (const resource of resources) {
       if (
-        resource.name.includes("wp-content") ||
-        resource.name.includes("wp-admin")
+        resource.name.includes('wp-content') ||
+        resource.name.includes('wp-admin')
       ) {
         return true;
       }
@@ -50,7 +50,7 @@ export async function checkWordPress(url: string): Promise<boolean> {
 
     return false; // Если ни метатег, ни пути не найдены
   } catch (error) {
-    console.error("Произошла ошибка при определении CMS WordPress:", error);
+    console.error('Произошла ошибка при определении CMS WordPress:', error);
     return false;
   }
 }

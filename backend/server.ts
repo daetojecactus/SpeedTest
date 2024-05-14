@@ -1,7 +1,7 @@
-import express, { Express } from "express";
-import dotenv from "dotenv";
-import cors from "cors";
-import router from "./routes/index";
+import express, { Express } from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import router from './routes/index';
 
 dotenv.config();
 
@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 // Подключаем роутеры
-app.use("/api", router);
+app.use('/api', router);
 
 app.listen(PORT, () => {
   console.log(`Сервер запущен на порту ${PORT}`);

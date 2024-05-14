@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { domStructureInfo } from "../http/domStructureAPI";
-import { DOMStructure } from "../Components/DOMStructureInfo/DOMStructureInfo";
+import { useState } from 'react';
+import { domStructureInfo } from '../http/domStructureAPI';
+import { DOMStructure } from '../Components/DOMStructureInfo/DOMStructureInfo';
 
 // Хук для получения информации о DOM
 export default function useDOMStructure() {
@@ -14,12 +14,12 @@ export default function useDOMStructure() {
       if (data) {
         setDomStructure(data.domStructure);
       } else {
-        console.log("Ошибка: информация о структуре DOM не получена");
+        console.log('Ошибка: информация о структуре DOM не получена');
       }
     } catch (error) {
       console.error(
-        "Произошла ошибка при получении информации о структуре DOM:",
-        error
+        'Произошла ошибка при получении информации о структуре DOM:',
+        error,
       );
     }
   };

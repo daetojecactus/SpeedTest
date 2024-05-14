@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { firstLoadTime } from "../http/firstLoadTimeAPI";
+import { useState } from 'react';
+import { firstLoadTime } from '../http/firstLoadTimeAPI';
 
 export default function useFirstLoadTime() {
   // Состояние времени
@@ -12,13 +12,13 @@ export default function useFirstLoadTime() {
       const response = await firstLoadTime(url);
 
       // Проверяем формат ответа сервера и обновляем состояние времени загрузки
-      if (response && typeof response.time === "number") {
+      if (response && typeof response.time === 'number') {
         setFirstLoadingTime(response.time);
       } else {
-        console.error("Ошибка: Неверный формат ответа сервера");
+        console.error('Ошибка: Неверный формат ответа сервера');
       }
     } catch (error) {
-      console.error("Произошла ошибка при измерении времени загрузки:", error);
+      console.error('Произошла ошибка при измерении времени загрузки:', error);
     }
   };
 

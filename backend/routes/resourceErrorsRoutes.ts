@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import {resourceErrors} from '../controllers/resourceErrorsController';
+import { resourceErrors } from '../controllers/resourceErrorsController';
 
 const router: Router = express.Router();
 

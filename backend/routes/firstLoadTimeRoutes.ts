@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import {firstLoadTime} from '../controllers/firstLoadTimeController';
+import { firstLoadTime } from '../controllers/firstLoadTimeController';
 
 const router: Router = express.Router();
 
