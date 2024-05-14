@@ -67,7 +67,7 @@ export async function checkBitrix(url: string): Promise<boolean> {
 
     //проверяем ресурсы на наличие путей Bitrix
     for (const resource of resources) {
-      if (resource.name.includes("bitrix")) {
+      if (resource.name.includes("bitrix" && "templates")) {
         return true;
       }
     }

@@ -16,8 +16,8 @@ export async function fullLoadTime(req: Request, res: Response) {
     // Засекаем время окончания загрузки
     const endTime = Date.now();
 
-    // Вычисляем затраченное время и минусуем время которое мы ждали пока прогрузятся новые ресурсы
-    const elapsedTime = endTime - startTime - 3000;
+    // Вычисляем затраченное время
+    const elapsedTime = endTime - startTime ;
 
     // Выводим в консоль время загрузки
     console.log(`Полное время загрузки сайта ${url}: ${elapsedTime} мс`);

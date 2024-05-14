@@ -1,4 +1,5 @@
 import React from "react";
+import { Card } from 'antd';
 
 interface FirstLoadingTimeInfoProps {
   firstLoadingTime: number | null;
@@ -7,7 +8,11 @@ interface FirstLoadingTimeInfoProps {
 export default function FirstLoadingTimeInfo({ firstLoadingTime }: FirstLoadingTimeInfoProps) {
   return (
     <div>
-      {firstLoadingTime !== null && <p>Время первого ответа: {firstLoadingTime} мс</p>}
+      {firstLoadingTime !== null && 
+      <Card title="Время первого ответа" bordered={false}>
+      {firstLoadingTime} мс
+      </Card>
+      }
     </div>
   );
 }

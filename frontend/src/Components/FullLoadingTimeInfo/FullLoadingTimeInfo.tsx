@@ -1,4 +1,6 @@
 import React from "react";
+import { Alert } from 'antd';
+
 
 interface FullLoadingTimeInfoProps {
   fullLoadingTime: number | null;
@@ -7,7 +9,14 @@ interface FullLoadingTimeInfoProps {
 export default function FullLoadingTimeInfo({ fullLoadingTime }: FullLoadingTimeInfoProps) {
   return (
     <div>
-      {fullLoadingTime !== null && <p>Время загрузки сайта: {fullLoadingTime} мс</p>}
+      {fullLoadingTime !== null && 
+      <Alert
+      message="Время загрузки сайта:"
+      description={`${fullLoadingTime} мс`}
+      type="info"
+      showIcon
+    />
+      }
     </div>
   );
 }

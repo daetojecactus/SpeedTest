@@ -7,7 +7,7 @@ export interface Resource {
   size: number;
   duration: number;
   type: string;
-  loadedAfterInitialLoad: boolean;
+  // loadedAfterInitialLoad: boolean;
 }
 
 interface ResourcesInfoProps {
@@ -66,21 +66,21 @@ export default function ResourcesInfo({ resources }: ResourcesInfoProps) {
       ],
       onFilter: (value, record) => record.type.indexOf(value as string) === 0,
     },
-    {
-      title: "Loaded After Initial Load",
-      dataIndex: "loadedAfterInitialLoad",
-      key: "loadedAfterInitialLoad",
-      render: (loadedAfterInitialLoad: boolean) =>
-        loadedAfterInitialLoad ? "After Initial Load" : "Before Initial Load",
-      sorter: (a, b) => {
-        // Преобразуем булевые значения в числа (false -> 0, true -> 1)
-        const boolA = a.loadedAfterInitialLoad ? 1 : 0;
-        const boolB = b.loadedAfterInitialLoad ? 1 : 0;
+    // {
+    //   title: "Loaded After Initial Load",
+    //   dataIndex: "loadedAfterInitialLoad",
+    //   key: "loadedAfterInitialLoad",
+    //   render: (loadedAfterInitialLoad: boolean) =>
+    //     loadedAfterInitialLoad ? "After Initial Load" : "Before Initial Load",
+    //   sorter: (a, b) => {
+    //     // Преобразуем булевые значения в числа (false -> 0, true -> 1)
+    //     const boolA = a.loadedAfterInitialLoad ? 1 : 0;
+    //     const boolB = b.loadedAfterInitialLoad ? 1 : 0;
 
-        // Сравниваем преобразованные значения
-        return boolA - boolB;
-      },
-    },
+    //     // Сравниваем преобразованные значения
+    //     return boolA - boolB;
+    //   },
+    // },
   ];
 
   // Функция для определения цвета Tag в зависимости от типа ресурса
@@ -114,14 +114,20 @@ export default function ResourcesInfo({ resources }: ResourcesInfoProps) {
   return (
     <div>
       {resources.length > 0 && (
-        <Table
-          columns={columns}
-          dataSource={resources.map((item, index) => ({ ...item, key: index }))}
-          pagination={false}
-          onChange={onChange}
-          showSorterTooltip={{ target: "sorter-icon" }}
-          scroll={{ x: true }}
-        />
+        <>
+          <h3>Список ресурсов:</h3>
+          <Table
+            columns={columns}
+            dataSource={resources.map((item, index) => ({
+              ...item,
+              key: index,
+            }))}
+            pagination={false}
+            onChange={onChange}
+            showSorterTooltip={{ target: "sorter-icon" }}
+            scroll={{ x: true }}
+          />
+        </>
       )}
     </div>
   );

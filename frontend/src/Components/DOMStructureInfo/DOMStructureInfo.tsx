@@ -1,4 +1,6 @@
 import React from "react";
+import { Descriptions } from "antd";
+import type { DescriptionsProps } from "antd";
 
 export interface DOMStructure {
   totalElements: number;
@@ -13,15 +15,34 @@ interface DOMStructureProps {
 export default function DOMStructureInfo({ domStructure }: DOMStructureProps) {
   // Проверяем, доступна ли информация о структуре DOM
   if (!domStructure) {
-    return null; // Если информация недоступна, ничего не отображаем
+    return null; // Если информации нет, ничего не отображаем
   }
+
+  const items: DescriptionsProps["items"] = [
+    {
+      label: "Общее количество элементов",
+      children: domStructure.totalElements.toString(),
+    },
+    {
+      label: "Максимальная глубина вложенности",
+      children: domStructure.maxDepth.toString(),
+    },
+    {
+      label: "Максимальное число дочерних элементов",
+      children: domStructure.maxChildCount.toString(),
+    },
+  ];
 
   return (
     <div>
       <h3>Информация о структуре DOM:</h3>
-      <div>Общее количество элементов: {domStructure.totalElements}</div>
-      <div>Максимальная глубина вложенности: {domStructure.maxDepth}</div>
-      <div>Максимальное число дочерних элементов: {domStructure.maxChildCount}</div>
+      <Descriptions bordered column={1}>
+        {items.map((item, index) => (
+          <Descriptions.Item key={index.toString()} label={item.label}>
+            {item.children}
+          </Descriptions.Item>
+        ))}
+      </Descriptions>
     </div>
   );
 }
